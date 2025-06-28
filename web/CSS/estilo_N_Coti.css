@@ -1,0 +1,417 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Reinicia el margen por defecto del body */
+    background-color: #f4f4f4; /* Un gris claro para el fondo */
+    color: #333; /* Color de texto principal */
+    display: flex; /* Usa flexbox para el layout principal (barra lateral + contenido) */
+}
+
+.main-content {
+    flex-grow: 1; /* Permite que el contenido principal ocupe el espacio restante */
+    padding: 20px; /* Añade un padding alrededor del contenido */
+    margin-left: 250px; /* Ajusta este valor para dejar espacio a tu barra_izq */
+    /* Si tu barra_izq es fija o tiene un ancho diferente, ajusta este margin-left */
+}
+
+/* Contenedor principal de la forma de cotización */
+.Contenido-Cotizacion {
+    background-color: #fff; /* Fondo blanco para el contenido */
+    padding: 30px;
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 1200px; /* Ancho máximo para el contenedor */
+    margin: 20px auto; /* Centra el contenedor horizontalmente dentro de main-content */
+    display: grid; /* Usa CSS Grid para el diseño interno de la forma */
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    gap: 30px; /* Espacio entre las columnas y filas */
+}
+
+/* Estilos para títulos principales y de sección */
+h1, h2, h3 {
+    color: #0056b3; /* Un tono de azul para los títulos */
+    border-bottom: 2px solid #eee; /* Línea inferior sutil */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    grid-column: 1 / -1; /* Hace que los títulos abarquen todas las columnas */
+}
+
+/* Estilos para las secciones individuales de la forma */
+.section {
+    padding: 20px;
+    border: 1px solid #e0e0e0; /* Borde gris claro para las secciones */
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Modificador para secciones que ocupan todo el ancho */
+.section-full {
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+}
+
+/* Grupo de un label y su input/select */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block; /* Cada label en su propia línea */
+    margin-bottom: 5px;
+    font-weight: bold; /* Texto de label en negrita */
+}
+
+/* Estilos para todos los inputs de texto, fecha, número y selects */
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group select {
+    width: calc(100% - 20px); /* Ancho del 100% menos el padding */
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Estilos específicos para grupos de radio buttons */
+.radio-group label {
+    margin-right: 20px;
+    display: inline-block; /* Mantiene los radios en la misma línea */
+}
+
+/* Contenedor para tablas responsivas (si las tuvieras para otros usos) */
+.table-responsive {
+    overflow-x: auto; /* Permite scroll horizontal en tablas grandes */
+}
+
+/* Estilos para la tabla (si la mantuvieras para otros usos, aunque aquí ya no se usa para formatos) */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre bordes de celdas */
+    margin-top: 15px;
+}
+
+table th, table td {
+    border: 1px solid #ddd; /* Bordes de celdas */
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2; /* Fondo para encabezados de tabla */
+}
+
+/* Estilos para los selectores de categoría y formato */
+.category-select,
+.format-select {
+    width: 100%; /* Ocupa todo el ancho disponible en la celda */
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.category-select:focus,
+.format-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* NUEVO: Estilos para el div de visualización de subprocesos */
+.sub-process-display {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 5px; /* Espacio debajo del label */
+    background-color: #f9f9f9;
+    min-height: 50px; /* Para que siempre tenga un tamaño si no hay subprocesos */
+    display: flex; /* Para centrar el texto si no hay subprocesos */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    color: #777; /* Color de texto para el mensaje predeterminado */
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.sub-process-display ul {
+    list-style: disc; /* Puntos de lista */
+    padding-left: 20px; /* Indentación para los puntos */
+    margin: 0; /* Eliminar margen predeterminado de la ul */
+    width: 100%; /* Ocupa todo el ancho */
+}
+
+.sub-process-display ul li {
+    margin-bottom: 5px;
+    color: #333; /* Color de texto de los ítems */
+}
+
+.sub-process-display p {
+    margin: 0; /* Eliminar margen predeterminado del párrafo */
+    text-align: center;
+    width: 100%;
+}
+
+
+/* Grupo de botones al final de secciones */
+.btn-group {
+    margin-top: 20px;
+    text-align: right; /* Alinea los botones a la derecha */
+}
+
+/* Estilos base para todos los botones */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    font-size: 1rem;
+    margin-left: 10px; /* Espacio entre botones */
+    transition: background-color 0.3s ease; /* Transición suave al hover */
+}
+
+/* Colores para botones principales (ej. Orden de Servicio, Añadir) */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Colores para botones secundarios (ej. Guardar) */
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Colores para botones de éxito (ej. Generar Cotización) */
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Utilidad para alinear texto a la derecha */
+.text-right {
+    text-align: right;
+}
+
+/* Estilo para la visualización del total final */
+.total-display {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #0056b3;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #e9f5ff; /* Fondo claro para resaltar */
+    border-radius: 5px;
+    text-align: right;
+}
+
+/* Icono de flecha para el botón de Orden de Servicio */
+.icon-arrow {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* SVG de una flecha blanca, codificado en base64 para evitar otra petición */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* Estilos para la lista de gastos adicionales */
+.additional-expenses-list {
+    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.additional-expenses-list p { /* Estilo para el mensaje de "no hay gastos" */
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 10px;
+}
+
+.additional-expenses-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.additional-expenses-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.additional-expenses-list li:last-child {
+    border-bottom: none;
+}
+
+.additional-expenses-list li span {
+    font-weight: bold;
+}
+
+.additional-expenses-list li .remove-gasto {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.additional-expenses-list li .remove-gasto:hover {
+    background-color: #c82333;
+}
+
+/* --- ESTILOS PARA LA LISTA DE FORMATOS SELECCIONADOS --- */
+.selected-formats-list {
+    margin-top: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.selected-formats-list p { /* Estilo para el mensaje de "no hay formatos" */
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 10px;
+}
+
+/* Contenedor individual para cada formato seleccionado */
+.selected-format-item {
+    display: flex; /* Usa flexbox para alinear contenido y botón en la misma línea */
+    justify-content: space-between; /* Espacio entre los detalles y el botón */
+    align-items: center; /* Centra verticalmente */
+    padding: 12px 15px; /* Más padding para que respire */
+    margin-bottom: 10px; /* Espacio entre ítems */
+    background-color: #fff; /* Fondo blanco para cada ítem */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 4px; /* Bordes redondeados */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Sombra muy sutil */
+    transition: background-color 0.2s ease; 
+}
+
+.selected-format-item:last-child {
+    margin-bottom: 0; /* No hay margen inferior para el último ítem */
+}
+
+/* Contenedor para los detalles del formato (categoría + nombre/código/precio) */
+.format-info-group {
+    flex-grow: 1; /* Permite que este grupo ocupe el mayor espacio posible */
+    margin-right: 15px; /* Espacio entre los detalles y el botón */
+}
+
+/* La línea de la categoría */
+.format-category-header {
+    font-weight: bold;
+    color: #0056b3; /* Color azul para la categoría */
+    margin-bottom: 5px; /* Espacio debajo de la categoría */
+    font-size: 1.1em; /* Un poco más grande para la categoría */
+}
+
+/* La línea de los detalles del formato (nombre, código, precio) */
+.format-details-line {
+    line-height: 1.5; /* Altura de línea para mejor legibilidad */
+    font-size: 0.95em; /* Un poco más pequeño que la categoría */
+    color: #555;
+}
+
+.format-name {
+    font-weight: normal; /* Asegura que no esté en negrita por defecto */
+}
+
+.format-code {
+    font-size: 0.9em; /* Un poco más pequeño que el nombre */
+    color: #777;
+    font-style: italic;
+}
+
+.format-price {
+    font-weight: bold;
+    color: #28a745; /* Verde para el precio */
+    margin-left: 8px; /* Espacio entre el código y el precio */
+    white-space: nowrap; /* Evita que el precio se rompa en varias líneas */
+}
+
+/* Estilo para la lista de subprocesos dentro de cada ítem de formato seleccionado */
+.sub-processes-list {
+    list-style: disc; /* Puntos de lista */
+    padding-left: 20px; /* Indentación */
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.sub-processes-list li {
+    margin-bottom: 3px;
+}
+
+.selected-format-item .remove-selected-format {
+    background-color: #dc3545; /* Rojo de Bootstrap para peligro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.selected-format-item .remove-selected-format:hover {
+    background-color: #c82333;
+}
+
+
+/* MEDIA QUERIES para responsividad */
+@media (max-width: 768px) {
+    .Contenido-Cotizacion {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        gap: 20px;
+    }
+
+    .main-content {
+        margin-left: 0; /* Elimina el margen izquierdo en pantallas pequeñas si el menú es responsivo */
+        padding: 10px;
+    }
+
+    /* Ajuste para ítems de formato en móviles */
+    .selected-format-item {
+        flex-direction: column; /* Apila la categoría/detalles y el botón en pantallas pequeñas */
+        align-items: flex-start; /* Alinea el texto a la izquierda */
+        padding: 10px;
+    }
+
+    .format-info-group {
+        margin-right: 0;
+        margin-bottom: 10px; /* Espacio entre los detalles y el botón cuando están apilados */
+    }
+
+    .selected-format-item .remove-selected-format {
+        width: 100%; /* Botón de eliminar ocupa todo el ancho */
+        margin-left: 0;
+    }
+}

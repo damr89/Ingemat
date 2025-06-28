@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ingemat S.A.C - Formatos</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="CSS/estilo_menu.css">
+    <link rel="stylesheet" href="CSS/barra_izquierda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="CSS/estilo_N_Coti.css">
+    <link rel="stylesheet" href="CSS/estilo_formatos.css">
+</head>
+<body>
+    <aside class="barra_izq">
+        <div class="barra_izq-icono">
+            <img src="Imagenes/Usuario.png" alt="Avatar usuario">
+        </div>
+        <nav class="barra_izq-menu">
+            <ul>
+                <li><a href="S_Registrados.html"><i class="fas fa-home"></i>Servicios Registrados</a></li>
+                <li><a href="Nueva_Coti.html"><i class="fas fa-file-invoice"></i>Nueva Cotización</a></li>
+                <li><a href="Formatos.html" class="active"><i class="fas fa-file-alt"></i>Formatos</a></li>
+                <li class="Cerrar"><a href="Login.html"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+            </ul>
+        </aside>
+
+    <main class="main-content">
+        <div class="container seccion-gestion-formatos">
+            <h1>Gestión de Categorías, Formatos y Sub Procesos</h1>
+
+            <div class="disposicion-tres-columnas">
+                <div class="panel-categoria">
+                    <h2>Categorías</h2>
+                    <div class="grupo-formulario">
+                        <label for="nombreNuevaCategoria">Nueva Categoría:</label>
+                        <div class="fila-flexible">
+                            <input type="text" id="nombreNuevaCategoria" placeholder="Nombre de la nueva categoría">
+                            <button type="button" class="btn btn-primary" id="btnAgregarCategoria">Agregar</button>
+                        </div>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="dropdownCategorias">Seleccionar Categoría Existente:</label>
+                        <div class="fila-flexible alinear-al-final">
+                            <select id="dropdownCategorias">
+                                <option value="">-- Seleccione una categoría --</option>
+                            </select>
+                            <button type="button" class="btn btn-warning" id="btnEditarCategoria" style="display: none;">Editar Categoría</button>
+                            <button type="button" class="btn btn-danger" id="btnDeshabilitarCategoria" style="display: none;">Deshabilitar Categoría</button>
+                        </div>
+                    </div>
+
+                    <div id="areaEdicionCategoria" class="grupo-formulario" style="display: none; margin-top: 20px; border-top: 1px solid var(--medium-grey); padding-top: 20px;">
+                        <label for="inputNombreEdicionCategoria">Nuevo nombre para la categoría seleccionada:</label>
+                        <div class="fila-flexible">
+                            <input type="text" id="inputNombreEdicionCategoria" placeholder="Escribe el nuevo nombre aquí">
+                            <button type="button" class="btn btn-success" id="btnGuardarNombreCategoria">Guardar Cambios</button>
+                            <button type="button" class="btn btn-secondary" id="btnCancelarEdicionCategoria">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-formato">
+                    <h2>Formatos por Categoría</h2>
+                    <p id="mensajeNoCategoriaSeleccionadaParaFormatos">Seleccione una categoría para agregar o ver formatos.</p>
+
+                    <div id="areaInputFormato" style="display: none;">
+                        <div class="grupo-formulario">
+                            <label for="nombreNuevoFormato">Nuevo Formato:</label>
+                            <div class="fila-flexible">
+                                <input type="text" id="nombreNuevoFormato" placeholder="Nombre del nuevo formato">
+                                <button type="button" class="btn btn-primary" id="btnAgregarFormato">Agregar</button>
+                        </div>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="dropdownFormatos">Seleccionar Formato Existente:</label>
+                            <div class="fila-flexible alinear-al-final">
+                                <select id="dropdownFormatos">
+                                    <option value="">-- Seleccione un formato --</option>
+                                </select>
+                                <button type="button" class="btn btn-warning" id="btnEditarFormato" style="display: none;">Editar Formato</button>
+                                <button type="button" class="btn btn-danger" id="btnDeshabilitarFormato" style="display: none;">Deshabilitar Formato</button>
+                            </div>
+                        </div>
+
+                        <div id="areaEdicionFormato" class="grupo-formulario" style="display: none; margin-top: 20px; border-top: 1px solid var(--medium-grey); padding-top: 20px;">
+                            <label for="inputNombreEdicionFormato">Nuevo nombre para el formato seleccionado:</label>
+                            <div class="fila-flexible">
+                                <input type="text" id="inputNombreEdicionFormato" placeholder="Escribe el nuevo nombre aquí">
+                                <button type="button" class="btn btn-success" id="btnGuardarNombreFormato">Guardar Cambios</button>
+                                <button type="button" class="btn btn-secondary" id="btnCancelarEdicionFormato">Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-input-subproceso">
+                    <h2>Sub Procesos por Formato</h2>
+                    <p id="mensajeNoFormatoSeleccionadoParaSubprocesos">Seleccione un formato para agregar o ver sub procesos.</p>
+
+                    <div id="areaInputSubproceso" style="display: none;">
+                        <div class="grupo-formulario">
+                            <label for="codigoSubproceso">Código:</label>
+                            <input type="text" id="codigoSubproceso" placeholder="CÓD-001">
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="nombreSubproceso">Nombre:</label>
+                            <input type="text" id="nombreSubproceso" placeholder="Nombre del Sub Proceso">
+                        </div>
+                        <div class="grupo-formulario">
+                            <label for="precioSubproceso">Precio:</label>
+                            <input type="number" id="precioSubproceso" placeholder="0.00" min="0" step="0.01">
+                        </div>
+                        <div class="grupo-botones">
+                            <button type="button" class="btn btn-success" id="btnAgregarSubproceso">Agregar Sub Proceso</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lista-subprocesos-ancho-completo">
+                    <h3>Sub Procesos Registrados</h3>
+                    <div id="listaSubprocesos">
+                        <p>No hay sub procesos para este formato o no se ha seleccionado ninguno.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="JS/gestion_formatos.js"></script>
+</body>
+</html>

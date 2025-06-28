@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingemat S.A.C - Factura Electrónica</title>
+    <link rel="icon" href="Imagenes/Logo.png" type="image/png">
+    <link rel="stylesheet" href="CSS/estilo_menu.css">
+    <link rel="stylesheet" href="CSS/barra_izquierda.css">
+    <link rel="stylesheet" href="CSS/Diseño_Factura.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <aside class="barra_izq">
+        <div class="barra_izq-icono">
+            <img src="Imagenes/Usuario.png" alt="Avatar usuario">
+        </div>
+        <nav class="barra_izq-menu">
+            <ul>
+                <li><a href="S_Registrados.html"class="active"><i class="fas fa-home"></i>Servicios Registrados</a></li>
+                <li><a href="Nueva_Coti.html"><i class="fas fa-file-invoice"></i>Nueva Cotización</a></li>
+                <li><a href="Formatos.html"><i class="fas fa-file-alt"></i>Formatos</a></li>
+                <li class="Cerrar"><a href="Login.html"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="Contenido">
+        <section class="factura-container">
+            <header class="factura-header">
+                <div class="header-left">
+                    <div class="empresa-info">
+                        <h2>INGEMAT GALLARDO S.A.C.</h2>
+                        <p>AV. HUSARES DE JUNIN URB. MONSERRATE MZA. D LOTE. 13</p>
+                        <p>TRUJILLO - TRUJILLO - LA LIBERTAD</p>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <div class="factura-box">
+                        <h3>FACTURA ELECTRONICA</h3>
+                        <p>RUC: 20607982971</p>
+                        <p>E001-242</p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="factura-meta-info">
+                <div class="meta-item">
+                    <label>Fecha de Emisión:</label>
+                    <input type="text" value="DD/MM/AAAA" readonly>
+                </div>
+                <div class="meta-item">
+                    <label>Señor(es):</label>
+                    <input type="text" value="NOMBRE DEL CLIENTE" readonly>
+                </div>
+                <div class="meta-item">
+                    <label>RUC:</label>
+                    <input type="text" value="RUC DEL CLIENTE" readonly>
+                </div>
+                <div class="meta-item">
+                    <label>Dirección del Receptor de la factura:</label>
+                    <input type="text" value="DIRECCIÓN DEL CLIENTE" readonly>
+                </div>
+                <div class="meta-item">
+                    <label>Dirección del Cliente:</label>
+                    <input type="text" value="DIRECCIÓN DEL CLIENTE (si es diferente)" readonly>
+                </div>
+                <div class="meta-item">
+                    <label>Tipo de Moneda:</label>
+                    <input type="text" value="S/" readonly>
+                </div>
+                <div class="meta-item">
+                    <label>Observación:</label>
+                    <input type="text" value="ORDEN S" readonly>
+                </div>
+                <div class="meta-item forma-pago">
+                    <label>Forma de pago:</label>
+                    <input type="text" value="CONTADO" readonly>
+                </div>
+            </div>
+
+            <div class="factura-detalle">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Unidad Medida</th>
+                            <th>Descripción</th>
+                            <th>Valor Unitario</th>
+                            <th>ICBPER</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>SERVICIO</td>
+                            <td>
+                                CONSULTORIA EN ELABORACION DE ESTUDIOS
+                                <br>PLAZO DE EJECUCION DEL SERVICIO:
+                                <br>EL PLAZO DE LA EJECUCION DEL SERVICIO ES DE QUINCE ( 15 ) DIAS CALENDARIOS CONTADOS, DESPUES DE NOTIFICADA LA ORDEN
+                                <br>LUGAR DE EJECUCION DEL SERVICIO: DEL DISTRITO DE MARCABAL, SANCHEZ CARRION LA LIBERTAD
+                                <br>LA CONFORMIDAD DE PAGO SERA LA SIGUIENTE:
+                                <br>UNICO PAGO = 100% DEL MONTO CUANSTRACTUAL, PREVIA APROBACION DEL AREA USUSUARIA
+                                <br>PARTES INTEGRANTES DE LA ORDEN DE SERVICIO: LA PRESENTE ORDEN DE SERVICIO ESTA CONFORMADA POR LOS TERMINOS DE REFERENCIA, LA COTIZACION, ASI COMO LOS DOCUMENTOS DERIVADOS DEL PROCEDIMIENTO DE CONTRATACION QUE ESTABLEZCAN OBLIGACIONES PARA LAS PARTES.
+                                <br>PENALIDADES: EN CASO DE INCUMPLIMIENTO SE APLICARÁ SUPLETORIAMENTE EN ART. 162 DEL REGLAMENTO DE LA LEY DE CONTRATACIONES DEL ESTADO.
+                                <br><br>
+                                CONTRATACION DE SERVICIO DE CONSULTORIA PARA LA SUPERVISION
+                                <br>DE ELABORACION DEL EXPEDIENTE TECNICO DEL PROYECTO:
+                                <br>"CREACION DEL SERVICIO DE ATENCION Y PROMOCION DE LAS
+                                <br>FAMILIAS EN COMEDOR COMUNAL DE CENTRO POBLADO MARCABAL"
+                                <br>DISTRITO DE PATAZ DE LA PROVINCIA DE LA LIBERTAD DEL DEPARTAMENTO DE LA TRUJILLO CON CUI 2669533
+                                <br>(DOS MIL QUINIENTOS Y 00/100 SOLES)
+                            </td>
+                            <td>2118.64</td>
+                            <td>0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="factura-totales">
+                <div class="totales-left">
+                    <div class="total-item">
+                        <label>Valor de Venta de Operaciones Gratuitas :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item total-monto-letras">
+                        <label>SON:</label>
+                        <input type="text" value="DOS MIL QUINIENTOS Y 00/100 SOLES" readonly>
+                    </div>
+                </div>
+                <div class="totales-right">
+                    <div class="total-item">
+                        <label>Sub Total Ventas :</label>
+                        <input type="text" value="S/ 2,118.64" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>Anticipos :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>Descuentos :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>Valor Venta :</label>
+                        <input type="text" value="S/ 2,118.64" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>ISC :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>IGV :</label>
+                        <input type="text" value="S/ 381.36" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>ICBPER :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>Otros Cargos :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>Otros Tributos :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item">
+                        <label>Monto de redondeo :</label>
+                        <input type="text" value="S/ 0.00" readonly>
+                    </div>
+                    <div class="total-item importe-total">
+                        <label>Importe Total :</label>
+                        <input type="text" value="S/ 2,500.00" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="factura-detraccion-credito">
+                <div class="detraccion-info">
+                    <h3>Información de la detracción</h3>
+                    <div class="form-group">
+                        <label>Leyenda:</label>
+                        <input type="text" value="Operación sujeta al Sistema de Pago de Obligaciones Tributarias con el Gobierno Central" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Bien o Servicio:</label>
+                        <input type="text" value="037 Demás servicios gravados con el IGV" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Medio de pago:</label>
+                        <input type="text" value="001 Depósito en cuenta" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label>Nro. Cta. Banco de la Nación:</label>
+                            <input type="text" value="00771093086" readonly>
+                        </div>
+                        <div class="form-group half-width">
+                            <label>Porcentaje de detracción:</label>
+                            <input type="text" value="12.00" readonly>
+                        </div>
+                        <div class="form-group half-width">
+                            <label>Monto detracción:</label>
+                            <input type="text" value="300.00" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="credito-info">
+                    <h3>Información del crédito</h3>
+                    <div class="form-group">
+                        <label>Monto neto pendiente de pago</label>
+                        <input type="text" value="S/ 2,200.00" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Total de Cuotas</label>
+                        <input type="text" value="1" readonly>
+                    </div>
+                    <div class="tabla-cuotas">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>N° Cuota</th>
+                                    <th>Fec. Venc.</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>17/03/2025</td>
+                                    <td>2,200.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="factura-nota-sunat">
+                <p>Esta es una representación impresa de la factura electrónica, generada en el Sistema de SUNAT. Puede verificarla utilizando su clave SOL.</p>
+            </div>
+
+            <div class="factura-botones">
+                <button class="btn btn-primary">Descargar PDF</button>
+                <a href="S_Registrados.html" class="btn btn-secondary">Volver a Servicios</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

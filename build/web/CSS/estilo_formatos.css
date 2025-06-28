@@ -1,0 +1,548 @@
+/* --- Variables de Diseño Globales (puedes ajustarlas o moverlas a un archivo de variables general) --- */
+:root {
+    --primary-color: #007bff;          /* Azul primario para acciones principales */
+    --primary-dark: #0056b3;           /* Azul más oscuro para títulos y elementos destacados */
+    --secondary-color: #6c757d;        /* Gris secundario para texto menos prominente */
+    --success-color: #28a745;          /* Verde para acciones de éxito (ej. agregar, guardar, habilitar) */
+    --danger-color: #dc3545;           /* Rojo para acciones peligrosas (ej. deshabilitar) */
+    --warning-color: orange;           /* Naranja para acciones de advertencia (ej. editar) */
+    --warning-dark-color: #e08e0b;     /* Naranja oscuro para hover de advertencia */
+    --info-color: #17a2b8;             /* Azul claro para información */
+    --white: #ffffff;                  /* Blanco puro */
+    --light-grey: #f0f2f5;             /* Un gris claro para el fondo general de la página */
+    --medium-grey: #dee2e6;            /* Gris medio para bordes y separadores */
+    --dark-grey: #343a40;              /* Gris oscuro para texto general */
+    --border-radius: 8px;              /* Radio de borde estándar para elementos redondeados */
+    --shadow-light: 0 2px 5px rgba(0, 0, 0, 0.1);    /* Sombra ligera */
+    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada para paneles */
+    --transition-speed: 0.3s;          /* Velocidad estándar para transiciones */
+}
+
+/* --- Estilos Base para la Página (html, body, main-content) --- */
+html {
+    box-sizing: border-box; /* Asegura que padding y border se incluyan en el ancho/alto total */
+}
+
+*, *::before, *::after {
+    box-sizing: inherit; /* Hereda el box-sizing para todos los elementos */
+}
+
+body {
+    background-color: var(--light-grey); /* Fondo de página general */
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Fuente principal */
+    color: var(--dark-grey); /* Color de texto predeterminado */
+    display: flex; /* Para layout con barra lateral */
+    min-height: 100vh; /* Asegura que el body ocupe al menos toda la altura de la ventana */
+    overflow-y: auto; /* Permite scroll si el contenido es más largo que la pantalla */
+}
+
+/* El main-content se expande para llenar el espacio restante junto a la barra lateral */
+.main-content {
+    margin-left: 250px; /* Espacio para la barra lateral izquierda */
+    padding: 20px;
+    flex-grow: 1; /* Permite que ocupe todo el espacio disponible */
+    overflow-y: auto; /* Permite scroll independiente si el contenido es muy largo */
+}
+
+/* --- Contenedor Principal de la Sección de Gestión de Formatos (la "tarjeta" grande) --- */
+.seccion-gestion-formatos {
+    background-color: var(--white); /* Fondo blanco para el panel principal */
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium); /* Sombra para dar efecto de elevación */
+    max-width: 1500px; /* Ancho máximo para el contenedor, evita que se estire demasiado */
+    width: 95%; /* Se ajusta al 95% del ancho de su padre */
+    margin: 20px auto; /* Centra el contenedor horizontalmente con margen arriba y abajo */
+    display: flex;
+    flex-direction: column; /* Apila el título y luego la cuadrícula */
+    gap: 20px; /* Espacio entre el título y la cuadrícula */
+}
+
+/* --- Estilos de Títulos Generales de la Sección --- */
+.seccion-gestion-formatos h1 {
+    color: var(--primary-dark);
+    border-bottom: 2px solid var(--medium-grey); /* Línea divisoria bajo el título principal */
+    padding-bottom: 10px;
+    margin-bottom: 15px; /* Espacio antes de la cuadrícula */
+    text-align: left;
+    font-size: 2em; /* Tamaño de fuente para el título principal */
+}
+
+/* --- Disposición de Cuadrícula para los Paneles de Entrada --- */
+.disposicion-tres-columnas {
+    display: grid;
+    /* Define dos columnas:
+       - La primera columna para Categorías y Formatos por Categoría (1.2fr, un poco más ancha)
+       - La segunda columna para Sub Procesos por Formato (1fr)
+    */
+    grid-template-columns: 1.2fr 1fr;
+    /* Define tres filas:
+       - Fila 1: Categorías
+       - Fila 2: Formatos por Categoría
+       - Fila 3: La lista de Sub Procesos Registrados (que abarca ambas columnas)
+    */
+    grid-template-rows: auto auto auto;
+    gap: 30px; /* Espacio entre las celdas de la cuadrícula */
+    align-items: start; /* Alinea los elementos al inicio de su celda */
+}
+
+/* Posicionamiento de los Paneles dentro de la Cuadrícula */
+.panel-categoria {
+    grid-column: 1; /* Primera columna */
+    grid-row: 1;    /* Primera fila */
+}
+
+.panel-formato {
+    grid-column: 1; /* Ahora está en la primera columna, debajo de Categorías */
+    grid-row: 2;    /* Segunda fila */
+}
+
+.panel-input-subproceso {
+    grid-column: 2; /* Segunda columna */
+    grid-row: 1 / span 2; /* Comienza en la fila 1 y abarca 2 filas (junto a Categorías y Formatos) */
+}
+
+/* La lista de Sub Procesos ahora abarca ambas columnas en la tercera fila */
+.lista-subprocesos-ancho-completo {
+    grid-column: 1 / -1; /* Comienza en la línea 1 y termina en la última línea de columna (abarca ambas) */
+    grid-row: 3;         /* Tercera fila */
+    padding: 25px;
+    border: 1px solid var(--medium-grey);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    background-color: var(--white);
+}
+
+/* --- Estilos de Subtítulos dentro de los Paneles --- */
+.disposicion-tres-columnas h2,
+.disposicion-tres-columnas h3 {
+    color: var(--primary-dark);
+    border-bottom: 1px solid var(--medium-grey); /* Línea más fina para subtítulos */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5em; /* Tamaño de fuente para subtítulos */
+}
+
+/* --- Estilos Generales de Formulario (inputs, labels, buttons) --- */
+.grupo-formulario {
+    margin-bottom: 15px; /* Espacio entre grupos de formulario */
+}
+
+.grupo-formulario label {
+    display: block; /* Cada label en su propia línea */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--dark-grey);
+    font-size: 0.95em;
+}
+
+.grupo-formulario input[type="text"],
+.grupo-formulario input[type="number"],
+.grupo-formulario select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--medium-grey);
+    border-radius: 6px;
+    font-size: 1.05rem;
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    background-color: var(--white); /* Fondo blanco para inputs */
+}
+
+.grupo-formulario input[type="text"]::placeholder,
+.grupo-formulario input[type="number"]::placeholder {
+    color: var(--secondary-color);
+    opacity: 0.7;
+}
+
+.grupo-formulario input:focus,
+.grupo-formulario select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* Botones genéricos */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap; /* Evita que el texto del botón se rompa */
+    transition: background-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease, transform 0.1s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px); /* Ligero efecto 3D al pasar el mouse */
+    box-shadow: var(--shadow-light);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--white);
+}
+.btn-success:hover {
+    background-color: #218838; /* Verde más oscuro */
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: var(--white);
+}
+.btn-danger:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    color: var(--white); /* Opcional: black si el contraste es bajo con orange */
+}
+.btn-warning:hover {
+    background-color: var(--warning-dark-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--white);
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Contenedores para botones agrupados */
+.grupo-botones {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    margin-top: 20px;
+}
+
+/* Utilidad Flexbox para elementos en la misma fila (ej. input + botón) */
+.fila-flexible {
+    display: flex;
+    gap: 10px; /* Espacio entre elementos flex */
+    align-items: flex-end; /* Alinea los elementos por su parte inferior */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan a la siguiente línea en pantallas pequeñas */
+}
+
+.fila-flexible .grupo-formulario {
+    flex-grow: 1; /* Permite que el input crezca */
+    margin-bottom: 0; /* Elimina el margen inferior si ya está en una fila flexible */
+}
+
+/* Estilos específicos para los botones de editar/habilitar/deshabilitar de categoría/formato */
+#btnDeshabilitarCategoria, /* CAMBIO: Nuevo ID */
+#btnEditarCategoria,
+#btnDeshabilitarFormato, /* CAMBIO: Nuevo ID */
+#btnEditarFormato {
+    min-width: 100px; /* Asegura un ancho mínimo para estos botones */
+    padding: 12px 15px; /* Ajusta el padding */
+    font-size: 0.95rem; /* Tamaño de fuente ligeramente más pequeño */
+    margin-left: 5px; /* Espacio entre el dropdown y los botones */
+}
+
+/* Estilo para el botón de deshabilitar/habilitar de categoría y formato */
+#btnDeshabilitarCategoria,
+#btnDeshabilitarFormato {
+    background-color: var(--danger-color); /* Color inicial para deshabilitar */
+    color: white;
+}
+#btnDeshabilitarCategoria:hover,
+#btnDeshabilitarFormato:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el ratón */
+}
+
+/* --- Mensajes de Ayuda o Estado --- */
+#mensajeNoCategoriaSeleccionadaParaFormatos,
+#mensajeNoFormatoSeleccionadoParaSubprocesos {
+    text-align: center;
+    color: var(--secondary-color);
+    font-style: italic;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: var(--light-grey);
+    border-radius: var(--border-radius);
+    border: 1px dashed var(--medium-grey);
+}
+
+/* --- Área de Edición Oculta por Defecto (mostrada con JS) --- */
+#areaEdicionCategoria,
+#areaEdicionFormato {
+    margin-top: 20px;
+    border-top: 1px solid var(--medium-grey);
+    padding-top: 20px;
+    display: none; /* Oculto por defecto, JS lo mostrará */
+}
+
+/* Área de input de Formato y Subproceso (inicialmente ocultas por JS) */
+#areaInputFormato,
+#areaInputSubproceso {
+    margin-top: 20px;
+    border-top: 1px solid var(--medium-grey);
+    padding-top: 20px;
+    display: none; /* Oculto por defecto, JS lo mostrará */
+}
+
+/* --- Estilos de la Lista de Sub Procesos --- */
+#listaSubprocesos {
+    margin-top: 20px; /* Espacio sobre la lista */
+    border-radius: var(--border-radius);
+    padding: 15px;
+    background-color: #fff8ed; /* Un color de fondo suave para la lista */
+    min-height: 100px; /* Altura mínima para la lista */
+    display: flex; /* Para centrar el mensaje "No hay subprocesos" */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#listaSubprocesos p {
+    width: 100%;
+    text-align: center;
+    color: var(--secondary-color);
+    font-style: italic;
+    margin: auto; /* Centra el mensaje cuando no hay ítems */
+    padding: 15px; /* Padding para el mensaje */
+}
+
+#listaSubprocesos ul {
+    list-style: none; /* Remueve los puntos de la lista */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* La lista ocupa todo el ancho disponible */
+}
+
+#listaSubprocesos li {
+    display: flex; /* Para alinear el texto del subproceso y los botones */
+    justify-content: space-between; /* Espacio entre detalles y botones */
+    align-items: center; /* Alineación vertical al centro */
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--medium-grey); /* Separador punteado entre ítems */
+    font-size: 1.05rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#listaSubprocesos li:last-child {
+    border-bottom: none; /* No hay borde en el último elemento */
+}
+
+/* Contenedor de los detalles del sub proceso (nombre, código, precio) */
+#listaSubprocesos .detalles-subproceso {
+    flex-grow: 1; /* Permite que los detalles ocupen el espacio disponible */
+    max-width: calc(100% - 140px); /* Deja espacio para los botones */
+    word-wrap: break-word; /* Rompe palabras largas */
+    overflow-wrap: break-word; /* Asegura el salto de línea para palabras largas */
+    margin-right: 15px; /* Espacio antes de los botones */
+}
+
+#listaSubprocesos .detalles-subproceso span {
+    display: block; /* Cada detalle en su propia línea */
+    margin-bottom: 3px;
+}
+
+#listaSubprocesos .detalles-subproceso .nombre-subproceso {
+    font-weight: bold;
+    color: #000000;
+    font-size: 1.1em;
+    line-height: 1.4; /* Espacio entre líneas para nombres largos */
+}
+
+/* Grupo de botones de acción (Editar, Habilitar/Deshabilitar) para cada subproceso */
+.acciones-subproceso {
+    display: flex;
+    gap: 8px; /* Espacio entre los botones de acción */
+    flex-shrink: 0; /* Evita que los botones se encojan */
+}
+
+/* Estilos específicos de los botones de acción para subprocesos (COLORES ACTUALIZADOS) */
+#listaSubprocesos .btn-editar-subproceso {
+    background-color: #3498db; /* Un azul claro para editar */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#listaSubprocesos .btn-editar-subproceso:hover {
+    background-color: #2980b9; /* Azul más oscuro al pasar el ratón */
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+}
+
+/* --- Nuevos Estilos para Elementos Deshabilitados/Inactivos --- */
+.deshabilitado {
+    opacity: 0.6; /* Hace el elemento un poco transparente */
+    pointer-events: none; /* Deshabilita clics en el elemento y sus hijos */
+    filter: grayscale(80%); /* Efecto de blanco y negro */
+    cursor: not-allowed;
+}
+
+/* Estilos específicos para el texto deshabilitado dentro de las listas */
+#listaSubprocesos li.deshabilitado .detalles-subproceso span {
+    color: var(--secondary-color); /* Color de texto más tenue */
+    text-decoration: line-through; /* Tachado para indicar inactividad */
+}
+
+/* Estilos para el botón de alternar estado del subproceso */
+#listaSubprocesos .btn-toggle-subproceso-estado {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    min-width: 80px; /* Asegura que quepan los textos "Habilitar"/"Deshabilitar" */
+}
+
+/* Estado "Deshabilitar" (cuando el elemento está habilitado y se va a deshabilitar) */
+#listaSubprocesos .btn-toggle-subproceso-estado.estado-activo {
+    background-color: var(--danger-color); /* Rojo para deshabilitar */
+    color: white;
+}
+
+#listaSubprocesos .btn-toggle-subproceso-estado.estado-activo:hover {
+    background-color: #c0392b; /* Rojo más oscuro al pasar el ratón */
+    box-shadow: 0 2px 4px rgba(231, 76, 60, 0.3);
+}
+
+/* Estado "Habilitar" (cuando el elemento está deshabilitado y se va a habilitar) */
+#listaSubprocesos .btn-toggle-subproceso-estado.estado-inactivo {
+    background-color: var(--success-color); /* Verde para habilitar */
+    color: white;
+}
+
+#listaSubprocesos .btn-toggle-subproceso-estado.estado-inactivo:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el ratón */
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.3);
+}
+
+/* --- Media Queries para Responsividad (adaptación a diferentes tamaños de pantalla) --- */
+
+/* Ajuste para pantallas grandes (desktop) si la barra lateral es más ancha */
+@media (min-width: 1025px) {
+    .main-content {
+        margin-left: 270px; /* Más espacio para barra lateral ancha */
+    }
+}
+
+/* Para tablets y laptops con pantallas medianas */
+@media (max-width: 1200px) {
+    .disposicion-tres-columnas {
+        grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas medianas */
+        grid-template-rows: auto auto auto auto; /* 4 filas para los 4 paneles */
+        gap: 25px;
+    }
+
+    .panel-categoria { grid-column: 1; grid-row: 1; }
+    .panel-formato { grid-column: 1; grid-row: 2; }
+    .panel-input-subproceso { grid-column: 1; grid-row: 3; }
+    .lista-subprocesos-ancho-completo { grid-column: 1; grid-row: 4; }
+}
+
+/* Para móviles y pantallas pequeñas */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0; /* La barra lateral se oculta o se superpone en móviles */
+        padding: 15px; /* Reduce el padding del contenido principal */
+    }
+
+    .seccion-gestion-formatos {
+        padding: 20px; /* Reduce el padding del contenedor principal */
+        width: 100%; /* Ocupa el 100% del ancho disponible */
+        margin: 15px auto; /* Margen más pequeño en móviles */
+    }
+
+    .disposicion-tres-columnas {
+        grid-template-columns: 1fr; /* Una sola columna para todos los paneles */
+        grid-template-rows: auto auto auto auto; /* Cada panel en su propia fila */
+        gap: 25px;
+    }
+
+    /* Todos los paneles ocupan la única columna */
+    .panel-categoria,
+    .panel-formato,
+    .panel-input-subproceso,
+    .lista-subprocesos-ancho-completo {
+        grid-column: 1;
+    }
+
+    /* Asignación de filas consecutivas */
+    .panel-categoria { grid-row: 1; }
+    .panel-formato { grid-row: 2; }
+    .panel-input-subproceso { grid-row: 3; }
+    .lista-subprocesos-ancho-completo { grid-row: 4; }
+
+
+    .fila-flexible {
+        flex-direction: column; /* Apila los elementos en la fila flexible (input y botón) */
+        align-items: stretch; /* Estira los elementos para que ocupen todo el ancho */
+        gap: 10px; /* Espacio entre elementos apilados */
+    }
+
+    .fila-flexible .btn,
+    .grupo-botones .btn {
+        width: 100%; /* Los botones ocupan todo el ancho en móviles */
+        margin-top: 5px; /* Espacio extra si el botón se apila debajo del input */
+    }
+
+    #dropdownCategorias,
+    #dropdownFormatos,
+    #btnDeshabilitarCategoria, /* CAMBIO */
+    #btnEditarCategoria,
+    #btnDeshabilitarFormato, /* CAMBIO */
+    #btnEditarFormato {
+        width: 100%; /* Asegura que los dropdowns y sus botones ocupen el ancho completo */
+        margin-left: 0; /* Elimina el margen izquierdo si se apilan */
+        margin-top: 10px; /* Espacio cuando se apilan */
+    }
+
+    /* Ajuste para los botones de acción dentro de la lista de subprocesos */
+    #listaSubprocesos li {
+        flex-direction: column; /* Apila los detalles y los botones */
+        align-items: flex-start; /* Alinea los elementos al inicio */
+        gap: 10px; /* Espacio entre los detalles y los botones */
+    }
+
+    #listaSubprocesos .detalles-subproceso {
+        max-width: 100%; /* Los detalles ocupan todo el ancho disponible */
+        margin-right: 0;
+    }
+
+    .acciones-subproceso {
+        width: 100%; /* Los botones de acción también ocupan todo el ancho */
+        justify-content: flex-start; /* Alinea los botones a la izquierda */
+        margin-left: 0;
+    }
+}
+
+/* Media Query para la barra lateral (si la tienes implementada con CSS) */
+@media (max-width: 768px) {
+    .barra_izq {
+        width: 100%; /* Ocupa todo el ancho */
+        height: auto; /* Altura automática */
+        position: fixed; /* O fixed para que siempre esté arriba si es un menú de hamburguesa */
+        top: 0;
+        left: 0;
+        z-index: 1000; /* Asegura que esté por encima de otros elementos */
+        display: none; /* Oculta la barra lateral por defecto en móvil, se mostrará con JS (menú hamburguesa) */
+        /* Si es un menú de hamburguesa, deberías tener un JS que lo alterne */
+    }
+
+    /* Ajuste del main-content cuando la barra lateral se oculta o se superpone */
+    body.sidebar-open .main-content {
+        margin-left: 250px; /* Cuando el sidebar se abre en móvil, empuja el contenido */
+    }
+}

@@ -1,0 +1,365 @@
+/* Estilos generales para el contenedor de la factura */
+.factura-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 900px; /* Ancho máximo para la factura */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Encabezado de la factura */
+.factura-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+}
+
+.header-left .empresa-info h2 {
+    color: #007BFF; /* Azul corporativo */
+    margin: 0 0 5px 0;
+    font-size: 1.8em;
+}
+
+.header-left .empresa-info p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+}
+
+.header-right .factura-box {
+    border: 2px solid #000;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.header-right .factura-box h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.3em;
+    color: #333;
+}
+
+.header-right .factura-box p {
+    margin: 0;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Información meta de la factura (Fecha, Señor(es), RUC, etc.) */
+.factura-meta-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Dos columnas por defecto */
+    gap: 10px 20px; /* Espacio entre filas y columnas */
+    margin-bottom: 20px;
+}
+
+.factura-meta-info .meta-item {
+    display: flex;
+    align-items: center; /* Alinea label e input al centro verticalmente */
+    gap: 10px;
+}
+
+.factura-meta-info .meta-item label {
+    font-weight: bold;
+    min-width: 150px; /* Ancho mínimo para las etiquetas */
+    text-align: right;
+    font-size: 0.9em;
+}
+
+.factura-meta-info .meta-item input[type="text"] {
+    flex-grow: 1; /* Permite que el input crezca */
+    padding: 6px 10px;
+    border: none; /* Sin borde para un look más de "documento" */
+    border-bottom: 1px solid #ccc; /* Solo borde inferior */
+    background-color: transparent; /* Fondo transparente */
+    font-size: 0.9em;
+    color: #555;
+    text-align: left; /* Alineación del texto dentro del input */
+    outline: none; /* Elimina el contorno al enfocar */
+}
+
+/* Ajustes específicos para los ítems que ocupan todo el ancho o tienen necesidades especiales */
+.factura-meta-info .meta-item:nth-child(2), /* Señor(es) */
+.factura-meta-info .meta-item:nth-child(3), /* RUC */
+.factura-meta-info .meta-item:nth-child(4), /* Dir. Receptor */
+.factura-meta-info .meta-item:nth-child(5) { /* Dir. Cliente */
+    grid-column: span 2; /* Ocupa las dos columnas */
+}
+
+.factura-meta-info .meta-item.forma-pago {
+    grid-column: 2 / 3; /* Asegura que "Forma de pago" esté en la segunda columna */
+    justify-self: end; /* Alinea a la derecha dentro de su celda de grid */
+}
+.factura-meta-info .meta-item.forma-pago label {
+    min-width: auto;
+    text-align: left;
+}
+
+
+/* Detalle del servicio - Tabla */
+.factura-detalle table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.factura-detalle th,
+.factura-detalle td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top; /* Alinea el contenido a la parte superior */
+    font-size: 0.9em;
+}
+
+.factura-detalle th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Anchos de columna para la tabla de detalle */
+.factura-detalle th:nth-child(1), /* Cantidad */
+.factura-detalle td:nth-child(1) {
+    width: 80px;
+    text-align: center;
+}
+
+.factura-detalle th:nth-child(2), /* Unidad Medida */
+.factura-detalle td:nth-child(2) {
+    width: 100px;
+    text-align: center;
+}
+
+.factura-detalle th:nth-child(3), /* Descripción */
+.factura-detalle td:nth-child(3) {
+    width: 50%; /* Ocupa la mayor parte */
+}
+
+.factura-detalle th:nth-child(4), /* Valor Unitario */
+.factura-detalle td:nth-child(4) {
+    width: 120px;
+    text-align: right;
+}
+
+.factura-detalle th:nth-child(5), /* ICBPER */
+.factura-detalle td:nth-child(5) {
+    width: 80px;
+    text-align: right;
+}
+
+/* Totales de la factura */
+.factura-totales {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.totales-left {
+    flex: 1;
+    padding-right: 20px; /* Espacio entre las dos columnas de totales */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los items a la izquierda */
+}
+
+.totales-right {
+    flex: 1;
+    border-left: 1px solid #eee; /* Separador visual */
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los items a la derecha para que los inputs queden bien */
+}
+
+.factura-totales .total-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    align-items: center;
+    width: 100%; /* Asegura que el item ocupe todo el ancho disponible en su columna */
+}
+
+.factura-totales .total-item label {
+    font-size: 0.9em;
+    color: #555;
+    flex-shrink: 0; /* Evita que la etiqueta se encoja */
+    margin-right: 10px;
+    white-space: nowrap; /* Evita que la etiqueta se rompa en varias líneas */
+}
+
+.factura-totales .total-item input[type="text"] {
+    flex-grow: 1;
+    padding: 4px 8px;
+    border: none;
+    border-bottom: 1px dashed #ccc; /* Línea discontinua */
+    background-color: transparent;
+    font-size: 0.9em;
+    color: #333;
+    text-align: right; /* Alinea el valor a la derecha */
+    outline: none;
+    box-sizing: border-box; /* Asegura que el padding no añada al ancho total */
+    min-width: 80px; /* Un ancho mínimo para evitar que se colapse demasiado */
+    max-width: 120px; /* Un ancho máximo para mantenerlo compacto */
+}
+
+.factura-totales .importe-total label,
+.factura-totales .importe-total input {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #000;
+}
+
+/* Información de detracción y crédito */
+.factura-detraccion-credito {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+.factura-detraccion-credito h3 {
+    color: #007BFF;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.factura-detraccion-credito .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si no hay espacio */
+}
+
+.factura-detraccion-credito .form-group label {
+    font-weight: bold;
+    min-width: 180px; /* Ajusta este valor */
+    text-align: right;
+    margin-right: 10px;
+    font-size: 0.9em;
+    flex-shrink: 0; /* Evita que la etiqueta se encoja */
+}
+
+.factura-detraccion-credito .form-group input {
+    flex-grow: 1;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    font-size: 0.9em;
+    color: #555;
+    outline: none;
+    box-sizing: border-box; /* Crucial para evitar que el padding se sume al ancho */
+    max-width: 300px; /* Limita el ancho de los inputs largos si es necesario */
+}
+
+.factura-detraccion-credito .form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 8px;
+    flex-wrap: wrap; /* Importante para que los campos de porcentaje y monto detracción no se salgan */
+}
+
+.factura-detraccion-credito .form-row .half-width {
+    flex: 1 1 auto; /* Permite que crezca y se encoja, pero con un tamaño base */
+    display: flex;
+    align-items: center;
+    min-width: 200px; /* Ancho mínimo para cada 'half-width' en el form-row */
+}
+
+.factura-detraccion-credito .form-row .half-width label {
+    min-width: 100px; /* Ajusta para las etiquetas dentro de la fila */
+    text-align: right;
+    margin-right: 5px;
+    flex-shrink: 0;
+}
+
+.factura-detraccion-credito .form-row .half-width input {
+    flex-grow: 1;
+    max-width: unset; /* Permite que el input ocupe el espacio disponible dentro del half-width */
+}
+
+
+.factura-detraccion-credito .tabla-cuotas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.factura-detraccion-credito .tabla-cuotas th,
+.factura-detraccion-credito .tabla-cuotas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.factura-detraccion-credito .tabla-cuotas th {
+    background-color: #e9e9e9;
+    font-weight: bold;
+}
+
+
+/* Nota de SUNAT */
+.factura-nota-sunat {
+    text-align: center;
+    font-style: italic;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* Botones de acción (similar a la Orden de Servicio) */
+.factura-botones {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.factura-botones .btn {
+    margin-left: 10px;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    text-decoration: none; /* Para los enlaces que se usan como botones */
+}
+
+.factura-botones .btn-primary {
+    background-color: #007BFF;
+    color: white;
+    border: 1px solid #007BFF;
+}
+
+.factura-botones .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.factura-botones .btn-secondary {
+    background-color: #6C757D; /* Un gris neutro */
+    color: white;
+    border: 1px solid #6C757D;
+}
+
+.factura-botones .btn-secondary:hover {
+    background-color: #5a6268; /* Tono más oscuro de gris */
+    border-color: #545b62;
+}

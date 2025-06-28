@@ -1,0 +1,381 @@
+/* estilo_menu.css */
+/* --- CSS GLOBAL Y RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* --- CONTENIDO PRINCIPAL (MAIN) --- */
+.Contenido {
+    margin-left: 250px;
+    flex-grow: 1;
+    padding: 30px;
+    background-color: #fff;
+}
+
+/* --- BARRA DE BÚSQUEDA --- */
+.Barra_buscad {
+    position: relative;
+    width: 700px;
+    max-width: 90%;
+    margin-bottom: 20px;
+}
+.diseño_barra {
+    width: 100%;
+    padding: 10px 12px 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: #f2f1f1;
+    color: #000;
+    font-size: 1em;
+    outline: none;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.diseño_barra::placeholder {
+    color: rgb(0, 0, 0);
+}
+.diseño_barra:focus {
+    background-color: #fff;
+    border-color: #1f1f1f;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.Icono_buscar {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #434343;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* --- FILTROS --- */
+.filtros {
+    display: flex;
+    flex-wrap: wrap; /* Permitir que los grupos de filtros se envuelvan */
+    align-items: center;
+    gap: 15px; /* Espacio entre los **grupos completos de filtro** */
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-group {
+    position: relative; /* Crucial: hace que el grupo sea un flex container inline */
+    display: flex; /* Crucial para alinear el botón y la X */
+    align-items: center;
+    gap: 5px; /* Espacio entre el botón de filtro y el nuevo botón 'X' */
+    flex-shrink: 0;
+    margin: 0;
+    /* Añadir un z-index predeterminado para los grupos de filtro para que puedan apilarse entre sí */
+    z-index: 10; /* Más bajo que los menús desplegables, más alto que el contenido normal */
+}
+
+/* Nuevo: Aumentar el z-index para el grupo de filtro activo para que su menú desplegable aparezca en la parte superior */
+.filter-group.active-dropdown-parent {
+    z-index: 1002; /* Más alto que el z-index predeterminado de dropdown-menu */
+}
+
+
+.filtro-button {
+    background-color: #ffffff;
+    border: 1px solid #003f87;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #000000;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+    position: relative; /* Aseguramos que se pueda posicionar relativamente si es necesario */
+    height: 35px; /* Aseguramos una altura consistente para todos los botones de filtro */
+    line-height: 1; /* Ayuda a la alineación vertical del texto y el icono */
+    flex-shrink: 0;
+}
+.filtro-button:hover {
+    background-color: #d1d9e0;
+}
+
+/* Estilo para el botón de filtro ACTIVO */
+.filtro-button--active {
+    background-color: #cceeff;
+    border-color: #88ccff;
+    color: #007bff;
+}
+
+
+
+.clear-filter-standalone-button:hover {
+    background-color: #e0e6eb;
+    border-color: #007bff;
+}
+
+/* Estilos específicos para el dropdown del filtro de estado */
+.filter-dropdown-menu {
+    left: 0;
+    right: auto;
+    min-width: 180px;
+    transform: translateY(5px);
+    z-index: 1001; /* Establecer un z-index específico para los desplegables de filtro */
+}
+
+.filter-dropdown-menu a.dropdown-item {
+    padding: 10px 16px;
+    display: block;
+    font-size: 0.9em;
+}
+
+/* REGLA ORIGINAL: para el menú de filtro de estado (por clic) */
+.filter-dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.filtros-clear {
+    background: none;
+    border: none; /* Asegura que no tenga borde por defecto */
+    color: #007bff;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: color 0.2s, border 0.2s; /* Añade 'border' a la transición para un efecto suave */
+    padding: 8px 12px; /* Ajusta el padding para que el borde no se vea pegado al texto */
+    border-radius: 60px; /* Opcional: bordes ligeramente redondeados */
+}
+
+.filtros-clear:hover {
+    color: #0056b3; /* Puedes mantener este cambio de color o ajustarlo */
+    text-decoration: none; /* Asegura que no haya subrayado */
+    border: 1px solid #007bff; /* Añade un borde al pasar el ratón */
+    /* border: 1px solid #0056b3; /* O usa un color más oscuro para el borde en hover */
+}
+
+/* --- LISTA DE PROYECTOS --- */
+.Lista_proyectos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 15px;
+
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #b26969;
+    border-left: 25px solid transparent;
+    border-radius: 10px;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+.project-item:hover {
+    transform: translateY(-3px);
+}
+/* Colores de borde izquierdo según el estado */
+.project-item--open {
+    border-left-color: #fd7e14;
+}
+.project-item--warning {
+    border-left-color: #ffc107;
+}
+.project-item--completed {
+    border-left-color: #28a745;
+}
+
+/* Contenido de texto del proyecto (título e info) */
+.project-text-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.project-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+.project-info {
+    font-size: 0.8em;
+    color: #777;
+    display: flex;
+    gap: 10px;
+    flex-wrap:wrap;
+}
+.project-info span {
+    font-weight: bold;
+    color: #555;
+}
+
+/* --- ACCIONES DEL PROYECTO (BOTÓN DE 3 PUNTOS Y MENÚ) --- */
+.project-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.action-button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: normal;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: none;
+    outline: none;
+}
+
+.action-button:hover {
+    background-color: #e0e0e0;
+    border-color: #bbb;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.action-button:focus {
+    outline: none;
+}
+
+/* Estilo específico para el botón de "Más Opciones" (3 puntos) */
+.more-options-button {
+    background-color: #ffffff;
+    color: #555;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.more-options-button:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.more-options-button:focus {
+    outline: none;
+}
+
+/* --- ESTILOS DEL MENÚ DESPLEGABLE (DROPDOWN) --- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    /* Se eliminó el z-index de aquí para manejarlo por grupo */
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    right: 24px;
+    top: -10px;
+
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    /* Cambiado z-index de 1000001 a 1001 para un mejor control */
+    z-index: 1001; 
+    border-radius: 5px;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+/* CAMBIO CLAVE AQUI: Solo aplica hover a los DROPDOWNS DENTRO DE project-actions */
+.project-actions .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.dropdown-menu a.dropdown-item {
+    color: #333;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.dropdown-menu a.dropdown-item:hover {
+    background-color: #e0e0e0;
+}
+
+.dropdown-menu a.dropdown-item i {
+    color: #666;
+}
+
+/* --- MEDIA QUERIES (RESPONSIVIDAD) --- */
+@media (max-width: 768px) {
+    .Contenido {
+        margin-left: 0;
+        padding: 20px;
+        width: 100%;
+    }
+    .Barra_buscad {
+        width: 100%;
+    }
+    .filtros {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .project-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+    }
+    .project-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    .action-button {
+        padding: 8px 10px;
+        font-size: 0.85em;
+    }
+}

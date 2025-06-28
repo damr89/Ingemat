@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ingemat S.A.C - Nueva Cotización</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="CSS/estilo_menu.css">
+    <link rel="stylesheet" href="CSS/barra_izquierda.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="CSS/estilo_N_Coti.css">
+</head>
+<body>
+    <aside class="barra_izq">
+        <div class="barra_izq-icono">
+            <img src="Imagenes/Usuario.png" alt="Avatar usuario">
+        </div>
+        <nav class="barra_izq-menu">
+            <ul>
+                <li><a href="S_Registrados.html"><i class="fas fa-home"></i>Servicios Registrados</a></li>
+                <li><a href="Nueva_Coti.html" class="active"><i class="fas fa-file-invoice"></i>Nueva Cotización</a></li>
+                <li><a href="Formatos.html"><i class="fas fa-file-alt"></i>Formatos</a></li>
+                <li class="Cerrar"><a href="Login.html"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="Contenido-Cotizacion">
+            <h1>Generador de Cotización</h1>
+
+            <section class="section">
+                <h2>Datos de Cotización</h2>
+                <div class="form-group">
+                    <label for="Motivo">Motivo:</label>
+                    <input type="text" id="Motivo" name="Motivo" placeholder="Motivo del proyecto">
+                </div>
+                <div class="form-group">
+                    <label for="solicitante">Solicitante:</label>
+                    <input type="text" id="solicitante" name="solicitante" placeholder="Nombre del solicitante">
+                </div>
+                <div class="form-group">
+                    <label for="rucDni">RUC / DNI:</label>
+                    <input type="text" id="rucDni" name="rucDni" placeholder="Número de RUC o DNI">
+                </div>
+                <div class="form-group">
+                    <label for="ubicacion">Ubicación:</label>
+                    <input type="text" id="ubicacion" name="ubicacion" placeholder="Dirección o Localidad">
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha">
+                </div>
+                <div class="form-group">
+                    <label for="tipoCliente">Tipo de Cliente:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" id="empresaPublica" name="tipoCliente" value="Empresa Publica"> Empresa Pública</label>
+                        <label><input type="radio" id="empresaPrivada" name="tipoCliente" value="Empresa Privada"> Empresa Privada</label>
+                        <label><input type="radio" id="clienteIndependiente" name="tipoCliente" value="Cliente Independiente"> Cliente Independiente</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Condiciones de Presupuesto</h2>
+                <div class="form-group">
+                    <label for="tiempoEjecucion">Tiempo de ejecución:</label>
+                    <input type="text" id="tiempoEjecucion" name="tiempoEjecucion" placeholder="Ej: 30 días hábiles">
+                </div>
+
+                <div class="form-group">
+                    <label for="formaPago">Forma de Pago:</label>
+                    <select id="formaPago" name="formaPago">
+                        <option value="">Seleccione una opción</option>
+                        </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoMoneda">Tipo de Moneda:</label>
+                    <div class="radio-group">
+                        <label><input type="radio" id="soles" name="tipoMoneda" value="S/" checked> S/ (Soles)</label>
+                        <label><input type="radio" id="dolares" name="tipoMoneda" value="$"> $ (Dólares)</label>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section-full">
+                <h2>Seleccionar Formatos</h2>
+                <div class="form-group">
+                    <label for="categorySelect">Categoría:</label>
+                    <select id="categorySelect" class="category-select">
+                        <option value="">Seleccione Categoría</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="formatSelect">Formato:</label>
+                    <select id="formatSelect" class="format-select">
+                        <option value="">Seleccione Formato</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sub Procesos del Formato:</label>
+                    <div id="subProcessDisplay" class="sub-process-display">
+                        <p>Seleccione un formato para ver sus subprocesos.</p>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" id="addSelectedItem">Agregar Formato</button>
+                </div>
+            </section>
+
+            <section class="section section-full">
+                <h2>Formatos Seleccionados</h2>
+                <div id="selectedFormatsList" class="selected-formats-list">
+                    <p>No hay formatos seleccionados.</p>
+                </div>
+            </section>
+
+            <section class="section section-full">
+                <h3>Gastos Adicionales</h3> 
+                <div class="form-group">
+                    <label for="descripcionGasto">Descripción:</label>
+                    <input type="text" id="descripcionGasto" name="descripcionGasto" placeholder="Ej: Transporte, Materiales extras">
+                </div>
+                <div class="form-group">
+                    <label for="precioGasto">Precio:</label>
+                    <input type="number" id="precioGasto" name="precioGasto" placeholder="0.00" min="0" step="0.01">
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary" id="addGastoAdicional">Agregar Gasto</button>
+                </div>
+
+                <div id="listaGastosAdicionales" class="additional-expenses-list">
+                </div>
+
+                <div class="total-display">
+                    Total Propuesta Económica: <span id="totalEconomica">0.00</span>
+                </div>
+            </section>
+
+            <div class="btn-group section-full">
+                <button type="submit" class="btn btn-secondary">Guardar Cotización</button>
+                <button type="button" class="btn btn-success">Generar Cotización</button>
+                <button type="button" class="btn btn-primary">
+                    Orden de Servicio <span class="icon-arrow"></span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="JS/Nueva_Coti.js"></script> 
+</body>
+</html>
