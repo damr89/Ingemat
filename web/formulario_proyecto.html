@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subir Informe PDF</title>
+</head>
+<body>
+    <h2>Subir Informe para Proyecto</h2>
+    <form action="subir_informe.php" method="post" enctype="multipart/form-data">
+        ID del Proyecto: <input type="number" name="id_proyecto" required><br><br>
+        Selecciona Informe (PDF): <input type="file" name="informe" accept="application/pdf" required><br><br>
+        <input type="submit" value="Subir Informe">
+    </form>
+</body>
+</html>

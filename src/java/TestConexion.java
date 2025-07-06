@@ -1,7 +1,7 @@
-import Conexion.conexion;
+import Conexion.Conexion;
 
 public class TestConexion {
     public static void main(String[] args) {
-        conexion.conectar();  // Esto llamará al método y mostrará el mensaje
+        Conexion.conectar();  // Esto llamará al método y mostrará el mensaje
     }
 }

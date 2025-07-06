@@ -1,40 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ingemat S.A.C - Inicio de Sesión</title>
-    <link rel="stylesheet" href="CSS/Diseño_Login.css">
-    <link rel="icon" href="logo.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ingemat S.A.C - Inicio de Sesión</title>
+  <link rel="stylesheet" href="CSS/Diseño_Login.css" />
+  <link rel="icon" href="logo.png" type="image/png" />
+
+  <style>
+    .grupo-formulario {
+      position: relative;
+    }
+
+    .grupo-formulario input {
+      width: 100%;
+      padding: 10px;
+      padding-right: 40px;
+    }
+
+    .grupo-formulario button {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* 🔒 OCULTAR OJO AUTOMÁTICO DEL NAVEGADOR */
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none !important;
+    }
+
+    input[type="password"] {
+      -webkit-appearance: none !important;
+      appearance: none !important;
+    }
+
+    /* 🔒 OCULTAR CONTENEDORES DE DECORACIÓN QUE USAN ALGUNOS NAVEGADORES */
+    input[type="password"]::-webkit-textfield-decoration-container {
+      display: none !important;
+    }
+  </style>
 </head>
 <body>
-    <div class="contenedor-inicio-sesion">
-        <div class="panel-izquierdo">
-            <div class="nombre-empresa">Ingemat S.A.C</div>
-            <h1>Bienvenido a Ingemat S.A.C</h1>
-            <h2>Laboratorio De Estudios Geotécnicos Y Ensayos De Materiales</h2>
-        </div>
-        <div class="panel-derecho">
-            <h2>Iniciar Sesión</h2>
-
-            <div class="grupo-formulario">
-                <input type="text" id="usuario" placeholder=" " required>
-                <label for="usuario">Usuario</label>
-            </div>
-
-            <div class="grupo-formulario">
-                <input type="password" id="password" placeholder=" " required>
-                <label for="password">Contraseña</label>
-            </div>
-
-            <div class="opciones-inicio-sesion">
-                <label class="recordarme-sesion">
-                    <input type="checkbox"> Mantenerme conectado
-                </label>
-                <a href="#" class="enlace-olvido-contrasena">¿Olvidó su contraseña?</a>
-            </div>
-            <a href="S_Registrados.html" class="boton-entrar">Entrar</a>
-        </div>
+  <div class="contenedor-inicio-sesion">
+    <div class="panel-izquierdo">
+      <div class="nombre-empresa">Ingemat S.A.C</div>
+      <h1>Bienvenido a Ingemat S.A.C</h1>
+      <h2>Laboratorio De Estudios Geotécnicos Y Ensayos De Materiales</h2>
     </div>
+    <div class="panel-derecho">
+      <h2>Iniciar Sesión</h2>
+
+<form action="login" method="post">
+  <div class="grupo-formulario">
+    <input type="text" id="usuario" name="usuario" placeholder="Usuario" required />
+  </div>
+
+  <div class="grupo-formulario">
+    <input type="password" id="password" name="clave" placeholder="Contraseña" required autocomplete="off" />
+    <button type="button" onclick="mostrarOcultarPassword(this)">👁️</button>
+  </div>
+
+  <div class="opciones-inicio-sesion">
+    <a href="#" class="enlace-olvido-contrasena">¿Olvidó su contraseña?</a>
+  </div>
+
+  <button type="submit" class="boton-entrar">Entrar</button>
+</form>
+
+  <script>
+    function mostrarOcultarPassword(boton) {
+      const input = document.getElementById("password");
+      if (input.type === "password") {
+        input.type = "text";
+        boton.textContent = "👁️‍️";
+      } else {
+        input.type = "password";
+        boton.textContent = "👁️";
+      }
+    }
+  </script>
+
+  <!-- Mostrar mensaje si hay error -->
+<script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("error") === "1") {
+    document.write('<p style="color: red;">❌ Usuario o contraseña incorrectos</p>');
+  }
+</script>
 </body>
 </html>

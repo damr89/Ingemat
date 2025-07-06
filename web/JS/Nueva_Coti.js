@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Referencias a los elementos de selección de categorías, formatos y CONTENEDOR DE SUB PROCESOS (NUEVO)
+    // Referencias a los elementos de selección de categorías, formatos y CONTENEDOR DE SUB PROCESOS
     const categorySelect = document.getElementById('categorySelect');
     const formatSelect = document.getElementById('formatSelect');
-    const subProcessDisplayDiv = document.getElementById('subProcessDisplay'); // NUEVO: div para mostrar subprocesos
-    const addSelectedItemButton = document.getElementById('addSelectedItem'); 
-    const selectedFormatsListDiv = document.getElementById('selectedFormatsList'); 
+    const subProcessDisplayDiv = document.getElementById('subProcessDisplay'); // div para mostrar subprocesos
+    const addSelectedItemButton = document.getElementById('addSelectedItem');    
+    const selectedFormatsListDiv = document.getElementById('selectedFormatsList');    
 
     // Referencias a los elementos de Gastos Adicionales
     const descripcionGastoInput = document.getElementById('descripcionGasto');
@@ -13,19 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const listaGastosAdicionalesDiv = document.getElementById('listaGastosAdicionales');
     const totalEconomicaSpan = document.getElementById('totalEconomica');
 
-    // Referencias a los elementos de Tipo de Cliente y Forma de Pago
-    const empresaPublicaRadio = document.getElementById('empresaPublica');
-    const empresaPrivadaRadio = document.getElementById('empresaPrivada');
-    const clienteIndependienteRadio = document.getElementById('clienteIndependiente');
+    // Referencias al elemento de Forma de Pago (se eliminaron las de tipoCliente)
     const formaPagoSelect = document.getElementById('formaPago');
 
-    let selectedFormats = []; 
-    let additionalExpenses = []; 
+    let selectedFormats = [];    
+    let additionalExpenses = [];    
     let categoriesAndFormats = {};
 
     // --- Funciones Auxiliares ---
 
-    // Función para añadir una opción a un select (se mantiene para otros selects como formaPago, categorySelect)
+    // Función para añadir una opción a un select
     function addOption(selectElement, text, value, disabled = false, selected = false) {
         const option = document.createElement('option');
         option.value = value;
@@ -54,11 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (storedData) {
             categoriesAndFormats = JSON.parse(storedData);
         } else {
+            // Datos por defecto si no hay nada en localStorage
             categoriesAndFormats = {
                 "1. FORMATOS PARA RECEPCIÓN DE MUESTRAS Y ETIQUETADO": [
-                    { 
-                        name: "Recepcion de muestras de suelo,agregados petreos, mezcla asfaltica y aceros de refuerzo", 
-                        code: "1.1", 
+                    {    
+                        name: "Recepcion de muestras de suelo,agregados petreos, mezcla asfaltica y aceros de refuerzo",    
+                        code: "1.1",    
                         price: 8.00,
                         subProcesses: [
                             "Preparación de muestras para ensayo",
@@ -66,22 +64,22 @@ document.addEventListener('DOMContentLoaded', () => {
                             "Registro en base de datos"
                         ]
                     },
-                    { 
-                        name: "Recepcion de tomas de nucleos de concreto", 
-                        code: "1.2", 
+                    {    
+                        name: "Recepcion de tomas de nucleos de concreto",    
+                        code: "1.2",    
                         price: 7.00,
                         subProcesses: [
                             "Verificación de integridad del núcleo",
                             "Medición de dimensiones",
                             "Almacenamiento en condiciones controladas",
-                            "Ensayo de compresión" 
+                            "Ensayo de compresión"    
                         ]
                     }
                 ],
                 "2. INFORMES TÉCNICOS": [
-                    { 
-                        name: "Informe de Mecánica de Suelos", 
-                        code: "3.1", 
+                    {    
+                        name: "Informe de Mecánica de Suelos",    
+                        code: "3.1",    
                         price: 150.00,
                         subProcesses: [
                             "Análisis de datos de campo",
@@ -89,9 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             "Elaboración de recomendaciones"
                         ]
                     },
-                    { 
-                        name: "Informe Geotécnico", 
-                        code: "3.2", 
+                    {    
+                        name: "Informe Geotécnico",    
+                        code: "3.2",    
                         price: 200.00,
                         subProcesses: [
                             "Estudio de estabilidad de taludes",
@@ -120,9 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Función para poblar los comboboxes de categoría y formato
     function populateCategoryAndFormatDropdowns() {
         categorySelect.innerHTML = ''; // Limpiar opciones existentes
-        addOption(categorySelect, "Seleccione Categoría", ""); // Opción por defecto
-        formatSelect.innerHTML = ''; 
-        addOption(formatSelect, "Seleccione Formato", ""); // Opción por defecto
+        addOption(categorySelect, "Seleccione Categoría", ""); // Opción por defecto para categoría
+        formatSelect.innerHTML = '';    
+        addOption(formatSelect, "Seleccione Formato", ""); // Opción por defecto para formato
         subProcessDisplayDiv.innerHTML = '<p>Seleccione un formato para ver sus subprocesos.</p>'; // Mensaje inicial del div
 
         for (const categoryName in categoriesAndFormats) {
@@ -135,24 +133,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener para el cambio de categoría
     categorySelect.onchange = () => {
         const selectedCategory = categorySelect.value;
-        formatSelect.innerHTML = ''; 
+        formatSelect.innerHTML = '';    
         addOption(formatSelect, "Seleccione Formato", ""); // Opción por defecto
         subProcessDisplayDiv.innerHTML = '<p>Seleccione un formato para ver sus subprocesos.</p>'; // Limpiar y poner mensaje
 
         if (selectedCategory && categoriesAndFormats[selectedCategory]) {
             categoriesAndFormats[selectedCategory].forEach(format => {
                 const option = document.createElement('option');
-                option.value = format.name; 
+                option.value = format.name;    
                 option.textContent = `${format.name} (Cód: ${format.code})`;
-                option.dataset.code = format.code; 
-                option.dataset.price = format.price; 
-                option.dataset.category = selectedCategory; 
+                option.dataset.code = format.code;    
+                option.dataset.price = format.price;    
+                option.dataset.category = selectedCategory;    
                 formatSelect.appendChild(option);
             });
         }
     };
 
-    // Event listener para el cambio de formato (AHORA ACTUALIZA EL DIV)
+    // Event listener para el cambio de formato (actualiza el div de subprocesos)
     formatSelect.onchange = () => {
         const selectedCategory = categorySelect.value;
         const selectedFormatName = formatSelect.value;
@@ -177,34 +175,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para renderizar (mostrar) la lista de formatos seleccionados
     function renderSelectedFormats() {
-        selectedFormatsListDiv.innerHTML = ''; 
+        selectedFormatsListDiv.innerHTML = '';    
 
         if (selectedFormats.length === 0) {
             selectedFormatsListDiv.innerHTML = '<p>No hay formatos seleccionados.</p>';
-            updateTotalEconomica(); 
+            updateTotalEconomica();    
             return;
         }
 
         selectedFormats.forEach((format, index) => {
-            const subProcessesHtml = generateSubProcessesHtml(format.subProcesses); 
+            const subProcessesHtml = generateSubProcessesHtml(format.subProcesses);    
 
-            formatItemDiv = document.createElement('div');
-            formatItemDiv.classList.add('selected-format-item'); 
+            const formatItemDiv = document.createElement('div'); // Declarar con const
+            formatItemDiv.classList.add('selected-format-item');    
             formatItemDiv.innerHTML = `
                 <div class="format-info-group">
                     <div class="format-category-header">${format.category}</div>
                     <div class="format-details-line">
-                        <span class="format-name">${format.name}</span> 
-                        (<span class="format-code">Cód: ${format.code}</span>) - 
+                        <span class="format-name">${format.name}</span>    
+                        (<span class="format-code">Cód: ${format.code}</span>) -    
                         <span class="format-price">S/ ${format.price.toFixed(2)}</span>
                     </div>
-                    ${subProcessesHtml} 
+                    ${subProcessesHtml}    
                 </div>
                 <button type="button" class="btn btn-danger remove-selected-format" data-index="${index}">Eliminar</button>
             `;
             selectedFormatsListDiv.appendChild(formatItemDiv);
         });
-        updateTotalEconomica(); 
+        updateTotalEconomica();    
     }
 
     // Event listener para el botón "Agregar Formato"
@@ -225,10 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     name: fullFormatData.name,
                     code: fullFormatData.code,
                     price: parseFloat(fullFormatData.price),
-                    subProcesses: fullFormatData.subProcesses || [] 
+                    subProcesses: fullFormatData.subProcesses || []    
                 };
                 selectedFormats.push(newFormat);
-                renderSelectedFormats(); 
+                renderSelectedFormats();    
 
                 // Resetear los selects después de agregar
                 categorySelect.value = "";
@@ -245,8 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
     selectedFormatsListDiv.addEventListener('click', (event) => {
         if (event.target.classList.contains('remove-selected-format')) {
             const indexToRemove = parseInt(event.target.dataset.index);
-            selectedFormats.splice(indexToRemove, 1); 
-            renderSelectedFormats(); 
+            selectedFormats.splice(indexToRemove, 1);    
+            renderSelectedFormats();    
         }
     });
 
@@ -254,11 +252,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Lógica para Gastos Adicionales ---
 
     function renderGastosAdicionales() {
-        listaGastosAdicionalesDiv.innerHTML = ''; 
+        listaGastosAdicionalesDiv.innerHTML = '';    
 
         if (additionalExpenses.length === 0) {
             listaGastosAdicionalesDiv.innerHTML = '<p>No hay gastos adicionales registrados.</p>';
-            updateTotalEconomica(); 
+            updateTotalEconomica();    
             return;
         }
 
@@ -272,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ul.appendChild(li);
         });
         listaGastosAdicionalesDiv.appendChild(ul);
-        updateTotalEconomica(); 
+        updateTotalEconomica();    
     }
 
     addGastoAdicionalButton.addEventListener('click', () => {
@@ -280,10 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const precio = parseFloat(precioGastoInput.value);
 
         if (descripcion && !isNaN(precio) && precio >= 0) {
-            additionalExpenses.push({ descripcion, precio }); 
-            renderGastosAdicionales(); 
-            descripcionGastoInput.value = ''; 
-            precioGastoInput.value = '';     
+            additionalExpenses.push({ descripcion, precio });    
+            renderGastosAdicionales();    
+            descripcionGastoInput.value = '';    
+            precioGastoInput.value = '';        
         } else {
             alert('Por favor, ingresa una descripción y un precio válido para el gasto adicional.');
         }
@@ -297,30 +295,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Lógica de Forma de Pago según Tipo de Cliente ---
-
-    function updateFormaPagoOptions() {
-        formaPagoSelect.innerHTML = ''; 
-        addOption(formaPagoSelect, "Seleccione una opción", "", true, true); 
-
-        if (empresaPrivadaRadio.checked || clienteIndependienteRadio.checked) {
-            addOption(formaPagoSelect, 'Por Cuotas (Pagos parciales programados)', 'cuotas');
-            addOption(formaPagoSelect, 'Al contado antes del informe', 'contado_antes_informe');
-            addOption(formaPagoSelect, 'Contra entrega', 'contra_entrega');
-        } else if (empresaPublicaRadio.checked) {
-            addOption(formaPagoSelect, 'Al finalizar el proyecto del estado', 'finalizar_proyecto_estado');
-        }
-    }
-
-    empresaPublicaRadio.addEventListener('change', updateFormaPagoOptions);
-    empresaPrivadaRadio.addEventListener('change', updateFormaPagoOptions);
-    clienteIndependienteRadio.addEventListener('change', updateFormaPagoOptions);
-
     // --- Inicialización al cargar la página ---
-    loadCategoriesAndFormatsFromStorage(); 
-    populateCategoryAndFormatDropdowns(); 
-    updateTotalEconomica(); 
-    renderSelectedFormats(); 
-    renderGastosAdicionales(); 
-    updateFormaPagoOptions(); 
+    loadCategoriesAndFormatsFromStorage();    
+    populateCategoryAndFormatDropdowns();    
+    updateTotalEconomica();    
+    renderSelectedFormats();    
+    renderGastosAdicionales();    
+    
+    // Poblar el select de Forma de Pago directamente al cargar la página
+    // Ya no depende del tipo de cliente, así que se establecen las opciones fijas.
+    addOption(formaPagoSelect, "Seleccione una opción", "", true, true); // Opción deshabilitada por defecto
+    addOption(formaPagoSelect, 'Por Cuotas (Pagos parciales programados)', 'cuotas');
+    addOption(formaPagoSelect, 'Al contado antes del informe', 'contado_antes_informe');
+    addOption(formaPagoSelect, 'Contra entrega', 'contra_entrega');
+    addOption(formaPagoSelect, 'Al finalizar el proyecto del estado', 'finalizar_proyecto_estado');
 });

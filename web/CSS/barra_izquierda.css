@@ -1,5 +1,4 @@
 /* barra_izquierda.css */
-
 .barra_izq {
     position: fixed;
     width: 250px;
@@ -39,8 +38,8 @@
     padding: 12px 20px;
     color: #ecf0f1;
     text-decoration: none;
-    transition: background-color 0.3s;
     font-size: 1em; /* CAMBIO: Define un tamaño de fuente base para el texto del enlace */
+    margin: 0 6px;
 }
 
 .barra_izq-menu a i {
@@ -50,11 +49,12 @@
 
 .barra_izq-menu a:hover:not(.active) {
     background-color: #34495e;
+    border-radius: 70px;
 }
 
 .barra_izq-menu a.active {
     background-color: #b163e5;
-    border-left: 5px solid #fff;
+    border-radius: 70px;
 }
 
 .Cerrar {

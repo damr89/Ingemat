@@ -1,3 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Obtener la sesión existente, no crear una nueva si no existe
+    HttpSession sesion = request.getSession(false);
+
+    // Verificar si la sesión es nula o si el atributo "usuario" no existe
+    if (sesion == null || sesion.getAttribute("usuario") == null) {
+        // Si no hay sesión válida, redirigir al usuario a la página de login
+        response.sendRedirect("Login.html?error=sesion_expirada");
+        return; // Detener la ejecución del resto de la página JSP
+    }
+
+    // Opcional: Obtener el nombre de usuario de la sesión para mostrarlo en la página
+    String usuarioLogueado = (String) sesion.getAttribute("usuario");
+
+    // CABECERAS PARA EVITAR EL CACHÉ DEL NAVEGADOR (importante para el botón "Volver")
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +29,16 @@
     <link rel="stylesheet" href="CSS/barra_izquierda.css">
     <link rel="stylesheet" href="CSS/Diseño_Orden_S.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <script>
+        window.addEventListener('pageshow', function(event) {
+            // event.persisted es true si la página se cargó desde el BF Cache
+            if (event.persisted) {
+                console.log("DEBUG: Página cargada desde BF Cache. Forzando recarga.");
+                window.location.reload(); // Forzar una recarga completa
+            }
+        });
+    </script>
 </head>
 <body>
     <aside class="barra_izq">
@@ -17,9 +47,10 @@
         </div>
         <nav class="barra_izq-menu">
             <ul>
-                <li><a href="S_Registrados.html" class="active"><i class="fas fa-home"></i>Servicios Registrados</a></li>
+                <li><a href="S_Registrados.jsp" class="active"><i class="fas fa-home"></i>Servicios Registrados</a></li>
                 <li><a href="Nueva_Coti.html"><i class="fas fa-file-invoice"></i>Nueva Cotización</a></li>
                 <li><a href="Formatos.html"><i class="fas fa-file-alt"></i>Formatos</a></li>
+                <%-- Enlace de cerrar sesión que apunta al LogoutServlet --%>
                 <li class="Cerrar"><a href="Login.html"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
             </ul>
         </nav>
