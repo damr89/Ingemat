@@ -1,0 +1,325 @@
+.orden-servicio-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px; /* Espacio con la sección anterior */
+}
+
+.orden-servicio-container h2,
+.orden-servicio-container h3 {
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.orden-servicio-datos-generales,
+.orden-servicio-unidad-ejecutora,
+.orden-servicio-proveedor-condiciones,
+.orden-servicio-titulo-proyecto,
+.orden-servicio-detalle,
+.orden-servicio-afectacion-presupuestal,
+.orden-servicio-facturacion,
+.orden-servicio-firmas,
+.orden-servicio-botones,
+.orden-servicio-nota-importante {
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+    width: calc(100% - 12px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-row .half-width {
+    flex: 1;
+}
+
+.form-row .full-width {
+    flex: 2; /* Ocupa más espacio si es necesario */
+}
+
+.orden-servicio-detalle table,
+.orden-servicio-afectacion-presupuestal table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Esto es clave para que los anchos fijos funcionen */
+}
+
+.orden-servicio-detalle th,
+.orden-servicio-detalle td,
+.orden-servicio-afectacion-presupuestal th,
+.orden-servicio-afectacion-presupuestal td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: top; /* Alinea el contenido de las celdas a la parte superior */
+}
+
+.orden-servicio-detalle th,
+.orden-servicio-afectacion-presupuestal th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center; /* Centra el texto del encabezado */
+}
+
+/* Anchos específicos para las columnas de la tabla DETALLE DEL SERVICIO */
+.orden-servicio-detalle th:nth-child(1), /* Columna Código */
+.orden-servicio-detalle td:nth-child(1) {
+    width: 100px; /* Ajusta este valor según necesites */
+    text-align: center;
+}
+
+.orden-servicio-detalle th:nth-child(2), /* Columna Unid. Med. */
+.orden-servicio-detalle td:nth-child(2) {
+    width: 90px; /* Ajusta este valor */
+    text-align: center;
+}
+
+.orden-servicio-detalle th:nth-child(3), /* Columna Descripción */
+.orden-servicio-detalle td:nth-child(3) {
+    width: 60%; /* Puedes probar con un porcentaje o un valor fijo como 450px */
+    text-align: left; /* Asegúrate de que el texto interno siga a la izquierda */
+}
+
+.orden-servicio-detalle th:nth-child(4), /* Columna Valor Total S/ */
+.orden-servicio-detalle td:nth-child(4) {
+    width: 120px; /* Ajusta este valor */
+    text-align: center; /* Centrar el valor */
+}
+
+/* ESTILOS PARA LOS INPUTS EN LAS CELDAS (TD) DE CÓDIGO, UNID. MED. Y VALOR TOTAL */
+.orden-servicio-detalle td.align-top-input {
+    vertical-align: top; /* Asegura que el input esté pegado a la parte superior de la celda */
+    padding-top: 5px; /* Pequeño padding para bajar un poco el input si es necesario */
+}
+
+.orden-servicio-detalle td .table-cell-input {
+    width: calc(100% - 10px); /* Ajusta el ancho para que quepa bien dentro de la celda */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    text-align: center; /* Centra el texto en estos inputs */
+    background-color: #fcfcfc; /* Un fondo blanco/casi blanco para que no sea gris */
+    display: block; /* Para que el input ocupe toda la anchura de la celda si es necesario */
+    margin: 0 auto; /* Centra el input dentro de la celda */
+}
+
+/* Estilos para el contenedor de la descripción que ahora tiene inputs */
+.descripcion-contenido {
+    padding: 5px;
+    line-height: 1.6;
+    font-size: 0.9em;
+    text-align: left; /* Asegura la alineación izquierda del texto de la descripción */
+}
+
+/* Estilos para los inputs dentro de la descripción (Tonos de Gris/Azul Claro) */
+.descripcion-contenido .input-inline {
+    display: inline-block;
+    padding: 2px 5px;
+    border: 1px solid #B0BEC5; /* Borde gris azulado suave */
+    border-radius: 3px;
+    background-color: #ECEFF1; /* Fondo gris muy claro */
+    font-family: inherit;
+    font-size: 1em;
+    margin: 0 2px;
+    box-sizing: border-box;
+    text-align: left;
+    min-width: 50px;
+}
+
+.descripcion-contenido .input-inline.small-input {
+    width: 30px; /* Ancho específico para el campo de días */
+    text-align: center; /* Centrar el número de días */
+    min-width: unset; /* Deshacer el min-width para este input específico */
+}
+
+.descripcion-contenido .input-inline[placeholder="Monto en letras"] {
+    width: 250px; /* Ancho para el campo de monto en letras */
+    min-width: unset; /* Deshacer el min-width para este input específico */
+}
+
+.descripcion-contenido .input-inline:focus {
+    outline: none;
+    border-color: #607D8B; /* Borde azul grisáceo más oscuro al enfocar */
+    box-shadow: 0 0 4px rgba(96, 125, 139, 0.4); /* Sombra sutil azul grisácea */
+}
+
+.total-orden {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.total-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.total-item span {
+    font-weight: bold;
+}
+
+.total-item input {
+    width: 150px;
+    text-align: right;
+}
+
+.total-final span {
+    font-size: 1.2em;
+}
+
+.total-final input {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.orden-servicio-firmas {
+    display: grid;
+    /* Ajustado el grid para 4 columnas con tamaño flexible */
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    gap: 15px;
+    align-items: start;
+}
+
+.firma-campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.firma-campo label {
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+/* Estilo para los nuevos inputs de firma */
+.firma-campo .firma-input {
+    width: calc(100% - 10px); /* Ajusta el ancho */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1em;
+    text-align: center; /* Centrar el texto en el input */
+    margin: 0 auto; /* Centrar el input horizontalmente */
+}
+
+.firma-campo.responsable label {
+    font-size: 0.8em;
+}
+
+.firma-campo.fecha {
+    align-items: center;
+}
+
+.fecha-box {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.fecha-box span {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+.fecha-box input {
+    width: 40px;
+    text-align: center;
+}
+
+/* --- NUEVOS ESTILOS PARA LOS BOTONES --- */
+.orden-servicio-botones {
+    text-align: right;
+    margin-top: 20px;
+    padding-top: 20px; /* Añadir padding superior para separar de las firmas */
+    border-top: 1px solid #eee; /* Separador sutil */
+}
+
+.orden-servicio-botones .btn {
+    margin-left: 10px;
+    padding: 12px 25px; /* Aumentado padding para que sean más grandes */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold; /* Hacer el texto más audaz */
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Transición suave al pasar el ratón */
+    text-decoration: none; /* Asegura que no haya subrayado en los enlaces usados como botones */
+}
+
+.orden-servicio-botones .btn-primary {
+    background-color: #007BFF; /* Azul corporativo, brillante pero profesional */
+    color: white;
+    border: 1px solid #007BFF;
+}
+
+.orden-servicio-botones .btn-primary:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+    border-color: #0056b3;
+}
+
+.orden-servicio-botones .btn-secondary {
+    background-color: #7cbd03; /* Verde oliva claro para acción secundaria */
+    color: white;
+    border: 1px solid #2e9a00; /* Borde verde más oscuro */
+}
+
+.orden-servicio-botones .btn-secondary:hover {
+    background-color: #2e9a00; /* Verde más oscuro al pasar el ratón */
+    border-color: #2e9a00; /* Borde del mismo verde más oscuro al pasar el ratón */
+}
+/* --- FIN NUEVOS ESTILOS PARA LOS BOTONES --- */
+
+
+.orden-servicio-nota-importante {
+    background-color: #ffeeba;
+    border: 1px solid #ffc107;
+    color: #383d41;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.orden-servicio-nota-importante h3 {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.orden-servicio-nota-importante ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+    list-style-type: disc;
+    font-size: 0.9em;
+}

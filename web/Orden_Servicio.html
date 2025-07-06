@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingemat S.A.C - Orden de Servicio</title>
+    <link rel="icon" href="Imagenes/Logo.png" type="image/png">
+    <link rel="stylesheet" href="CSS/estilo_menu.css">
+    <link rel="stylesheet" href="CSS/barra_izquierda.css">
+    <link rel="stylesheet" href="CSS/Diseño_Orden_S.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <aside class="barra_izq">
+        <div class="barra_izq-icono">
+            <img src="Imagenes/Usuario.png" alt="Avatar usuario">
+        </div>
+        <nav class="barra_izq-menu">
+            <ul>
+                <li><a href="S_Registrados.html" class="active"><i class="fas fa-home"></i>Servicios Registrados</a></li>
+                <li><a href="Nueva_Coti.html"><i class="fas fa-file-invoice"></i>Nueva Cotización</a></li>
+                <li><a href="Formatos.html"><i class="fas fa-file-alt"></i>Formatos</a></li>
+                <li class="Cerrar"><a href="Login.html"><i class="fas fa-sign-out-alt"></i>Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="Contenido">
+        
+        <section class="orden-servicio-container" id="ordenServicioContainer">
+            <h2>Orden de Servicio N° <span class="orden-servicio-codigo">CODIGO</span></h2>
+            <div class="form-group">
+                <input type="hidden" name="id_coti" value="<!-- AQUI PON EL ID DE LA COTI -->">
+            </div>
+            <div class="form-group">
+                <label for="fecha_orden">Fecha de Orden:</label>
+                <input type="date" name="fecha_orden" id="fecha_orden" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <input type="text" name="estado" id="estado" placeholder="Estado actual" required>
+            </div>
+            <div class="form-group">
+                <label for="observaciones">Observaciones:</label>
+                <textarea name="observaciones" id="observaciones" placeholder="Observaciones..."></textarea>
+            </div>
+            <div class="orden-servicio-datos-generales">
+                <div class="form-group">
+                    <label for="nroExpSIAF">N° Exp. SIAF:</label>
+                    <input type="text" id="nroExpSIAF" placeholder="Ingresar N° Exp. SIAF">
+                </div>
+            </div>
+
+            <div class="orden-servicio-unidad-ejecutora">
+                <div class="form-group">
+                    <label for="unidadEjecutora">UNIDAD EJECUTORA:</label>
+                    <input type="text" id="unidadEjecutora" placeholder="Ingresar Unidad Ejecutora">
+                </div>
+                <div class="form-group">
+                    <label for="nroIdentificacionUE">NRO. IDENTIFICACIÓN:</label>
+                    <input type="text" id="nroIdentificacionUE" placeholder="Ingresar NRO. Identificación">
+                </div>
+            </div>
+
+            <div class="orden-servicio-proveedor-condiciones">
+                <div class="orden-servicio-proveedor">
+                    <h3>1. DATOS DEL PROVEEDOR</h3>
+                    <div class="form-group">
+                        <label for="señoresProveedor">Señor(es):</label>
+                        <input type="text" id="señoresProveedor" value="INGEMAT GALLARDO S.A.C" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccionProveedor">Dirección:</label>
+                        <input type="text" id="direccionProveedor" value="Av. Husares de Junin Mz. D lote13 Urb. Monserrate LA LIBERTAD / TRUJILLO / TRUJILLO" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="rucProveedor">RUC:</label>
+                            <input type="text" id="rucProveedor" value="20607982971" readonly>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="telefonoProveedor">Teléfono:</label>
+                            <input type="text" id="telefonoProveedor" placeholder="Ingresar Teléfono">
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="faxProveedor">Fax:</label>
+                            <input type="text" id="faxProveedor" placeholder="Ingresar Fax">
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="cciProveedor">CCI:</label>
+                            <input type="text" id="cciProveedor" value="0025700092933302302" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="orden-servicio-condiciones">
+                    <h3>2. CONDICIONES GENERALES</h3>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="nroCuadroAdquisicion">N° Cuadro Adquisic:</label>
+                            <input type="text" id="nroCuadroAdquisicion" value="000098" readonly>
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="tipoProceso">Tipo de Proceso:</label>
+                            <input type="text" id="tipoProceso" value="ASP" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nroContrato">N° Contrato:</label>
+                        <input type="text" id="nroContrato" placeholder="Ingresar N° Contrato">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="monedaOrden">Moneda:</label>
+                            <input type="text" id="monedaOrden" placeholder="Ingresar Moneda">
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="tipoCambio">T/C:</label>
+                            <input type="text" id="tipoCambio" placeholder="Ingresar T/C">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="orden-servicio-titulo-proyecto">
+                <div class="form-group full-width">
+                    <label for="tituloProyectoOrden">TITULO DEL PROYECTO:</label>
+                    <input type="text" id="tituloProyectoOrden" placeholder="Ingresar Título del Proyecto">
+                </div>
+            </div>
+
+            <div class="orden-servicio-detalle">
+                <h3>DETALLE DEL SERVICIO</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Unid. Med.</th>
+                            <th>Descripción</th>
+                            <th>Valor Total S/</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="align-top-input"><input type="text" value="070100160206" readonly class="table-cell-input"></td>
+                            <td class="align-top-input"><input type="text" value="SERVICIO" readonly class="table-cell-input"></td>
+                            <td>
+                                <div class="descripcion-contenido">
+                                    CONSULTORIA EN ELABORACION DE ESTUDIOS<br>
+                                    PLAZO DE EJECUCION DEL SERVICIO:<br>
+                                    EL PLAZO DE LA EJECUCION DEL SERVICIO ES DE QUINCE ( <input type="text" class="input-inline small-input" placeholder=""> ) DIAS CALENDARIOS CONTADOS, DESPUES DE NOTIFICADA LA ORDEN<br>
+                                    LUGAR DE EJECUCION DEL SERVICIO: DEL DISTRITO de <input type="text" class="input-inline" placeholder="Distrito">, SANCHEZ CARRION LA LIBERTAD<br>
+                                    LA CONFORMIDAD DE PAGO SERA LA SIGUIENTE:<br>
+                                    UNICO PAGO = 100% DEL MONTO CUANSTRACTUAL, PREVIA APROBACION DEL AREA USUSUARIA<br>
+                                    PARTES INTEGRANTES DE LA ORDEN DE SERVICIO: LA PRESENTE ORDEN DE SERVICIO ESTA CONFORMADA POR LOS TERMINOS DE REFERENCIA, LA COTIZACION, ASI COMO LOS DOCUMENTOS DERIVADOS DEL PROCEDIMIENTO DE CONTRATACION QUE ESTABLEZCAN OBLIGACIONES PARA LAS PARTES.<br>
+                                    PENALIDADES: EN CASO DE INCUMPLIMIENTO SE APLICARÁ SUPLETORIAMENTE EN ART. 162 DEL REGLAMENTO DE LA LEY DE CONTRATACIONES DEL ESTADO.<br><br>
+
+                                    CONTRATACION DE SERVICIO DE CONSULTORIA PARA LA SUPERVISION<br>
+                                    DE ELABORACION DEL EXPEDIENTE TECNICO DEL PROYECTO:<br>
+                                    "CREACION DEL SERVICIO DE ATENCION Y PROMOCION DE LAS<br>
+                                    FAMILIAS EN COMEDOR COMUNAL DE CENTRO POBLADO MARCABAL"<br>
+                                    DISTRITO DE <input type="text" class="input-inline" placeholder="Distrito"> DE LA PROVINCIA DE <input type="text" class="input-inline" placeholder="Provincia"> DEL DEPARTAMENTO DE LA <input type="text" class="input-inline" placeholder="Departamento"> CON CUI 2669533<br>
+                                    (<input type="text" class="input-inline" placeholder="Monto en letras">)
+                                </div>
+                            </td>
+                            <td class="align-top-input"><input type="number" value="2500.00" readonly class="table-cell-input"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="orden-servicio-afectacion-presupuestal">
+                <h3>AFECTACION PRESUPUESTAL</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Meta/ Mnemonico</th>
+                            <th>Cadena Funcional</th>
+                            <th>FF/Rb</th>
+                            <th>Clasif. Gasto</th>
+                            <th>Monto S/</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" value="0055 / 0047" readonly></td>
+                            <td><input type="text" value="19.0401001010002669533.8000001" readonly></td>
+                            <td><input type="text" value="5 - 18" readonly></td>
+                            <td><input type="text" value="2.6.8 1.3 1" readonly></td>
+                            <td><input type="number" value="2500.00" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="total-orden">
+                    <div class="total-item"><span>TOTAL S/</span><input type="number" value="2500.00" readonly></div>
+                    <div class="total-item"><span>Exonerado</span><input type="number" value="0.00" readonly></div>
+                    <div class="total-item"><span>V. Venta</span><input type="number" value="2118.64" readonly></div>
+                    <div class="total-item"><span>I.G.V.</span><input type="number" value="381.36" readonly></div>
+                    <div class="total-item total-final"><span>Total</span><input type="number" value="2500.00" readonly></div>
+                </div>
+            </div>
+
+            <div class="orden-servicio-facturacion">
+                <div class="form-group full-width">
+                    <label for="facturarNombre">Facturar a nombre de:</label>
+                    <input type="text" id="facturarNombre" placeholder="Ingresar Nombre para Facturación">
+                </div>
+                <div class="form-group full-width">
+                    <label for="facturarDireccion">Dirección:</label>
+                    <input type="text" id="facturarDireccion" placeholder="Ingresar Dirección para Facturación">
+                </div>
+                <div class="form-group half-width">
+                    <label for="facturarRUC">RUC:</label>
+                    <input type="text" id="facturarRUC" placeholder="Ingresar RUC para Facturación">
+                </div>
+            </div>
+
+            <div class="orden-servicio-firmas">
+                <div class="firma-campo">
+                    <label>ELABORADO POR</label>
+                    <input type="text" class="firma-input">
+                </div>
+                <div class="firma-campo">
+                    <label>RESPONSABLE DE ADQUISICIONES</label>
+                    <input type="text" class="firma-input">
+                </div>
+                <div class="firma-campo">
+                    <label>RESPONSABLE DE ABASTECIMIENTO Y SERV. AUXILIARES</label>
+                    <input type="text" class="firma-input">
+                </div>
+                <div class="firma-campo fecha">
+                    <label>Fecha</label>
+                    <div class="fecha-box">
+                        <span>Día</span><input type="text" placeholder="__">
+                        <span>Mes</span><input type="text" placeholder="__">
+                        <span>Año</span><input type="text" placeholder="____">
+                    </div>
+                </div>
+            </div>
+
+            <div class="orden-servicio-botones">
+                <a href="S_Registrados.html" class="btn btn-primary">Generar Orden</a>
+                <button class="btn btn-secondary">Generar Estructura Informe</button>
+            </div>
+
+            <div class="orden-servicio-nota-importante">
+                <h3>NOTA IMPORTANTE:</h3>
+                <ul>
+                    <li>El Proveedor debe adjuntar a su Factura copia de la O/S</li>
+                    <li>Esta Orden es nula sin las firmas y sellos reglamentarios o autorizados.</li>
+                    <li>El Contratista (Proveedor) se obliga a cumplir las obligaciones que le correspondan, bajo sanción de quedar inhabilitado para contratar con el Estado en caso de incumplimiento.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

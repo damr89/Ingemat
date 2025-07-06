@@ -1,0 +1,64 @@
+/* barra_izquierda.css */
+
+.barra_izq {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    background-color: #092949;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    padding-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Asegura que usa la misma fuente si hay cambios globales */
+}
+
+.barra_izq-icono {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.barra_izq-icono img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.barra_izq-menu ul {
+    list-style: none;
+}
+
+.barra_izq-menu li {
+    margin-bottom: 5px;
+}
+
+.barra_izq-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 1em; /* CAMBIO: Define un tamaño de fuente base para el texto del enlace */
+}
+
+.barra_izq-menu a i {
+    margin-right: 15px;
+    font-size: 1.2em; /* Mantiene el tamaño del icono un poco más grande que el texto */
+}
+
+.barra_izq-menu a:hover:not(.active) {
+    background-color: #34495e;
+}
+
+.barra_izq-menu a.active {
+    background-color: #b163e5;
+    border-left: 5px solid #fff;
+}
+
+.Cerrar {
+    margin-top:auto;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
